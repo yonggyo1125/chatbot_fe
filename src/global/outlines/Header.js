@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { MdHome, MdDraw, MdLogin } from 'react-icons/md';
+import { BsChatRightDots } from 'react-icons/bs';
 import color from '../styles/color';
 import fontsize from '../styles/fontsize';
 
@@ -52,25 +52,12 @@ const Header = () => {
   return (
     <StyledHeader className="layout-width">
       <div className="left">
-        <NavLink to="/">
-          <MdHome />
-          <span>메인으로</span>
-        </NavLink>
         <NavLink
-          to="/draw"
+          to="/"
           className={({ isActive }) => classNames({ on: isActive })}
         >
-          <MdDraw />
-          <span>낙서하기</span>
-        </NavLink>
-      </div>
-      <div className="right">
-        <NavLink
-          to="/member/login"
-          className={({ isActive }) => classNames({ on: isActive })}
-        >
-          <MdLogin />
-          <span>로그인</span>
+          <BsChatRightDots />
+          <span>AI와 대화</span>
         </NavLink>
       </div>
     </StyledHeader>
