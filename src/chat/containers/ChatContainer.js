@@ -18,7 +18,9 @@ const ChatContainer = () => {
   const onSubmit = useCallback((e) => {
     e.preventDefault();
     const message = e.target.message.value.trim();
-    console.log('message', message);
+    setItems((items) => items.concat({ type: 'user', message }));
+
+    e.target.message.value = '';
   }, []);
 
   return (
