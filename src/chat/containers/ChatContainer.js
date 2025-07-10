@@ -18,7 +18,18 @@ const ChatContainer = () => {
   const onSubmit = useCallback((e) => {
     e.preventDefault();
     const message = e.target.message.value.trim();
-    setItems((items) => items.concat({ type: 'user', message }));
+    setItems((items) => {
+      const _items = items.concat({ type: 'user', message });
+
+      // 챗봇으로 메세지 전송
+      const requestUrl = `${process.env.REACT_APP_API_URL}/chat?message=${message}`;
+
+      fetch(requestUrl)
+        .then((res) => res.json())
+        .then((item) => console.log('item', item));
+
+      return _items;
+    });
 
     e.target.message.value = '';
   }, []);
