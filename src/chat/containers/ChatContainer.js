@@ -23,28 +23,24 @@ const ChatContainer = () => {
 
       const message = e.target.message.value.trim();
 
-      setItems((items) => {
-        items.concat({ type: 'user', message });
+      setItems((items) => items.concat({ type: 'user', message }));
 
-        // 챗봇으로 메세지 전송
-        const requestUrl = `${process.env.REACT_APP_API_URL}/chat?message=${message}`;
-        setLoading(true);
+      // 챗봇으로 메세지 전송
+      const requestUrl = `${process.env.REACT_APP_API_URL}/chat?message=${message}`;
+      setLoading(true);
 
-        fetch(requestUrl)
-          .then((res) => res.json())
-          .then(({ system }) => {
-            const message = system.replace(/\\n/g, '<br />');
-            setItems((items) => items.conat({ type: 'system', message }));
+      fetch(requestUrl)
+        .then((res) => res.json())
+        .then(({ system }) => {
+          const message = system.replace(/\\n/g, '<br />');
+          setItems((items) => items.concat({ type: 'system', message }));
 
-            setLoading(false);
-          })
-          .catch((err) => {
-            console.error(err);
-            setLoading(false);
-          });
-
-        return items;
-      });
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
 
       e.target.message.value = '';
     },
