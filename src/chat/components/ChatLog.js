@@ -10,6 +10,7 @@ const Wrapper = styled.ul`
   background: ${light};
   font-size: ${normal};
   color: ${dark};
+  border: 3px solid ${dark};
 `;
 
 const ChatLog = () => {
