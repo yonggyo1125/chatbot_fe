@@ -1,16 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SiProbot } from 'react-icons/si';
+import { FaRegUser } from 'react-icons/fa';
 import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
 const { light, dark } = color;
-const { normal } = fontsize;
+const { medium } = fontsize;
 
 const Wrapper = styled.ul`
   flex-grow: 1;
   background: ${light};
-  font-size: ${normal};
+  font-size: ${medium};
   color: ${dark};
   border: 3px solid ${dark};
+  li {
+    padding: 10px 20px;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
 
   .user {
     text-align: right;
@@ -24,8 +33,14 @@ const Wrapper = styled.ul`
 const ChatLog = () => {
   return (
     <Wrapper>
-      <li className="user">사용자 대화..</li>
-      <li className="system">AI 대화...</li>
+      <li className="user">
+        <FaRegUser />
+        <span>사용자 대화..</span>
+      </li>
+      <li className="system">
+        <SiProbot />
+        <span>AI 대화...</span>
+      </li>
     </Wrapper>
   );
 };

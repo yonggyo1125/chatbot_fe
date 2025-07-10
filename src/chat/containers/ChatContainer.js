@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import ChatLog from '../components/ChatLog';
 import ChatInput from '../components/ChatInput';
@@ -13,10 +13,18 @@ const Wrapper = styled.div`
 `;
 
 const ChatContainer = () => {
+  const [items, setItems] = useState([]);
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    const message = e.target.message.value.trim();
+    console.log('message', message);
+  }, []);
+
   return (
     <Wrapper>
       <ChatLog />
-      <ChatInput />
+      <ChatInput onSubmit={onSubmit} />
     </Wrapper>
   );
 };
