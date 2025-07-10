@@ -34,23 +34,32 @@ const Wrapper = styled.ul`
   .system {
     text-align: left;
   }
+
+  .loading {
+    height: 47px;
+    display: block;
+    margin: 0 auto;
+  }
 `;
 
-const ChatLog = ({ items, loading, callback }) => {
+const ChatLog = ({ items, loading }) => {
   const ref = useRef();
 
   useEffect(() => {
-    if (ref.current !== null) {
-      callback(ref.current);
-    }
-  }, [ref, callback]);
+    const el = ref.current;
+    if (!el) return;
+
+    setTimeout(() => {
+      el.scrollTo(0, 47 * items.length);
+    }, 500);
+  }, [ref, items]);
 
   return (
     <Wrapper ref={ref}>
       {items.map((item, i) => (
         <ChatItem key={item.type + '-' + i} item={item} />
       ))}
-      {loading && <img src={loadingImg} alt="loading" />}
+      {loading && <img src={loadingImg} alt="loading" className="loading" />}
     </Wrapper>
   );
 };
