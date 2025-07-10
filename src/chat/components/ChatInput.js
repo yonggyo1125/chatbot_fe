@@ -5,17 +5,19 @@ import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
 
 const { dark, light } = color;
-const { medium } = color;
+const { medium } = fontsize;
 
 const StyledForm = styled.form`
   display: flex;
   height: 55px;
   border: 3px solid ${dark};
-
+  margin-top: 10px;
+  
   button {
     width: 50px;
     background: ${dark};
     border: 0;
+    cursor: pointer;
 
     svg {
       font-size: 25px;
