@@ -49,8 +49,8 @@ const ChatContainer = () => {
 
   return (
     <Wrapper>
-      <ChatLog items={items} />
-      <ChatInput onSubmit={onSubmit} />
+      <ChatLog items={items} loading={loading} />
+      <ChatInput onSubmit={onSubmit} loading={loading} />
     </Wrapper>
   );
 };

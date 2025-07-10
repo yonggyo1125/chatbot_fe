@@ -34,10 +34,15 @@ const StyledForm = styled.form`
   }
 `;
 
-const ChatInput = ({ onSubmit }) => {
+const ChatInput = ({ onSubmit, loading }) => {
   return (
-    <StyledForm onSubmit={onSubmit} autoComplete='off'>
-      <input type="text" name="message" placeholder="메세지를 입력하세요..." />
+    <StyledForm onSubmit={onSubmit} autoComplete="off">
+      <input
+        type="text"
+        name="message"
+        placeholder="메세지를 입력하세요..."
+        disabled={loading}
+      />
       <button type="submit">
         <FaLocationArrow />
       </button>

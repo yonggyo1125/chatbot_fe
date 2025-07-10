@@ -4,6 +4,7 @@ import { SiProbot } from 'react-icons/si';
 import { FaRegUser } from 'react-icons/fa';
 import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
+import loadingImg from '../../global/images/loading.gif';
 const { light, dark } = color;
 const { medium } = fontsize;
 
@@ -30,12 +31,13 @@ const Wrapper = styled.ul`
   }
 `;
 
-const ChatLog = ({ items }) => {
+const ChatLog = ({ items, loading }) => {
   return (
     <Wrapper>
       {items.map((item, i) => (
         <ChatItem key={item.type + '-' + i} item={item} />
       ))}
+      {loading && <img src={loadingImg} alt="loading" />}
     </Wrapper>
   );
 };
