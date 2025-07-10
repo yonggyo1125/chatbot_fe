@@ -4,7 +4,7 @@ import { FaLocationArrow } from 'react-icons/fa';
 import color from '../../global/styles/color';
 import fontsize from '../../global/styles/fontsize';
 
-const { dark } = color;
+const { dark, light } = color;
 const { medium } = color;
 
 const StyledForm = styled.form`
@@ -14,6 +14,13 @@ const StyledForm = styled.form`
 
   button {
     width: 50px;
+    background: ${dark};
+    border: 0;
+
+    svg {
+      font-size: 25px;
+      color: ${light};
+    }
   }
 
   input {
