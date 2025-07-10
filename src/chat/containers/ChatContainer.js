@@ -14,25 +14,42 @@ const Wrapper = styled.div`
 
 const ChatContainer = () => {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    const message = e.target.message.value.trim();
-    setItems((items) => {
-      const _items = items.concat({ type: 'user', message });
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (loading) return;
 
-      // 챗봇으로 메세지 전송
-      const requestUrl = `${process.env.REACT_APP_API_URL}/chat?message=${message}`;
+      const message = e.target.message.value.trim();
 
-      fetch(requestUrl)
-        .then((res) => res.json())
-        .then((item) => console.log('item', item));
+      setItems((items) => {
+        items.concat({ type: 'user', message });
 
-      return _items;
-    });
+        // 챗봇으로 메세지 전송
+        const requestUrl = `${process.env.REACT_APP_API_URL}/chat?message=${message}`;
+        setLoading(true);
 
-    e.target.message.value = '';
-  }, []);
+        fetch(requestUrl)
+          .then((res) => res.json())
+          .then(({ system }) => {
+            const message = system.replace(/\\n/g, '<br />');
+            setItems((items) => items.conat({ type: 'system', message }));
+
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.error(err);
+            setLoading(false);
+          });
+
+        return items;
+      });
+
+      e.target.message.value = '';
+    },
+    [loading],
+  );
 
   return (
     <Wrapper>
