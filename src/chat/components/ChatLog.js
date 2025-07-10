@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { SiProbot } from 'react-icons/si';
 import { FaRegUser } from 'react-icons/fa';
@@ -14,11 +14,16 @@ const Wrapper = styled.ul`
   font-size: ${medium};
   color: ${dark};
   border: 3px solid ${dark};
+  overflow-y: auto;
   li {
     padding: 10px 20px;
 
     svg {
       margin-right: 10px;
+    }
+
+    span {
+      word-break: break-all;
     }
   }
 
@@ -31,9 +36,17 @@ const Wrapper = styled.ul`
   }
 `;
 
-const ChatLog = ({ items, loading }) => {
+const ChatLog = ({ items, loading, callback }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current !== null) {
+      callback(ref.current);
+    }
+  }, [ref, callback]);
+
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       {items.map((item, i) => (
         <ChatItem key={item.type + '-' + i} item={item} />
       ))}
