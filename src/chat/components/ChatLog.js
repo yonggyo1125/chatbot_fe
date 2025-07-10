@@ -30,18 +30,25 @@ const Wrapper = styled.ul`
   }
 `;
 
-const ChatLog = () => {
+const ChatLog = ({ items }) => {
   return (
     <Wrapper>
-      <li className="user">
-        <FaRegUser />
-        <span>사용자 대화..</span>
-      </li>
-      <li className="system">
-        <SiProbot />
-        <span>AI 대화...</span>
-      </li>
+      {items.map((item, i) => (
+        <ChatItem key={item.type + '-' + i} item={item} />
+      ))}
     </Wrapper>
+  );
+};
+
+const ChatItem = ({ item }) => {
+  const { type, message } = item;
+  return (
+    <>
+      <li className={type}>
+        {type === 'system' ? <SiProbot /> : <FaRegUser />}
+        <span>{message}</span>
+      </li>
+    </>
   );
 };
 

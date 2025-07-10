@@ -25,7 +25,7 @@ const ChatContainer = () => {
 
   return (
     <Wrapper>
-      <ChatLog />
+      <ChatLog items={items} />
       <ChatInput onSubmit={onSubmit} />
     </Wrapper>
   );
