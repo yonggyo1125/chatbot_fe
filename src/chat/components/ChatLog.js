@@ -11,13 +11,21 @@ const Wrapper = styled.ul`
   font-size: ${normal};
   color: ${dark};
   border: 3px solid ${dark};
+
+  .user {
+    text-align: right;
+  }
+
+  .system {
+    text-align: left;
+  }
 `;
 
 const ChatLog = () => {
   return (
     <Wrapper>
-      <li>사용자 대화..</li>
-      <li>AI 대화...</li>
+      <li className="user">사용자 대화..</li>
+      <li className="system">AI 대화...</li>
     </Wrapper>
   );
 };
